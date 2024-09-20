@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { MapPin } from 'lucide-react'
-import styles from '../../styles/plan/Plan.module.css'
 
 export default function Plan() {
   const router = useRouter()
@@ -47,15 +46,15 @@ export default function Plan() {
   }
 
   return (
-    <div className={`${styles.container}`}>
-      <Card className={`${styles.card}`}>
-        <CardHeader className={styles.cardHeader}>
-          <CardTitle className={styles.cardTitle}>Plan Your Meal</CardTitle>
+    <div className="min-h-screen bg-gradient-to-br from-orange-100 via-yellow-200 to-green-100 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md shadow-xl">
+        <CardHeader className="bg-primary text-primary-foreground p-6 rounded-t-lg">
+          <CardTitle className="text-2xl font-bold text-center">Plan Your Meal</CardTitle>
         </CardHeader>
-        <CardContent className={styles.cardContent}>
+        <CardContent className="p-6">
           <form onSubmit={handleFormSubmit} className="space-y-6">
             <div>
-              <Label htmlFor="numberOfMeals" className={styles.label}>
+              <Label htmlFor="numberOfMeals" className="text-sm font-medium text-gray-700 mb-1 block">
                 Number of Meals
               </Label>
               <Input
@@ -63,17 +62,17 @@ export default function Plan() {
                 name="numberOfMeals"
                 type="number"
                 required
-                className={styles.input}
+                className="w-full"
                 value={formData.numberOfMeals}
                 onChange={handleInputChange}
               />
             </div>
 
             <div>
-              <Label className={styles.label}>Dietary Requirements</Label>
-              <div className={styles.checkboxGrid}>
+              <Label className="text-sm font-medium text-gray-700 mb-2 block">Dietary Requirements</Label>
+              <div className="grid grid-cols-2 gap-4">
                 {['Vegetarian', 'Vegan', 'Gluten-Free', 'Dairy-Free'].map((requirement) => (
-                  <div key={requirement} className={styles.checkboxWrapper}>
+                  <div key={requirement} className="flex items-center space-x-2">
                     <Checkbox
                       id={requirement}
                       checked={formData.dietaryRequirements.includes(requirement)}
@@ -81,7 +80,7 @@ export default function Plan() {
                     />
                     <label
                       htmlFor={requirement}
-                      className={styles.checkboxLabel}
+                      className="text-sm text-gray-700 cursor-pointer"
                     >
                       {requirement}
                     </label>
@@ -91,27 +90,27 @@ export default function Plan() {
             </div>
 
             <div>
-              <Label htmlFor="zipCode" className={styles.label}>
+              <Label htmlFor="zipCode" className="text-sm font-medium text-gray-700 mb-1 block">
                 Location
               </Label>
-              <div className={styles.inputContainer}>
+              <div className="relative">
                 <Input
                   id="zipCode"
                   name="zipCode"
                   type="text"
                   required
-                  className={styles.inputWithIcon}
+                  className="w-full pl-10"
                   value={formData.zipCode}
                   onChange={handleInputChange}
                 />
-                <MapPin className={styles.mapPinIcon} />
+                <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
               </div>
-              <div className={styles.mapPlaceholder}>
-                <span className="text-gray-500">Map placeholder - Click to select location</span>
+              <div className="mt-2 bg-gray-100 rounded-md p-4 text-center cursor-pointer hover:bg-gray-200 transition-colors">
+                <span className="text-sm text-gray-500">Map placeholder - Click to select location</span>
               </div>
             </div>
 
-            <Button type="submit" className={styles.submitButton}>
+            <Button type="submit" className="w-full bg-primary hover:bg-primary-dark text-primary-foreground transition-colors">
               Generate Meal Plan
             </Button>
           </form>

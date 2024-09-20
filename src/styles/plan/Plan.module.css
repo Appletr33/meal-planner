@@ -1,5 +1,6 @@
+/* Plan.module.css */
 
-  .container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,28 +32,79 @@
     flex-direction: column;
   }
   
-  .checkbox-wrapper {
-    display: flex;
-    align-items: center;
-  }
-  
-  .checkbox-wrapper label {
-    margin-left: 0.5rem;
+  .label {
     font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-color);
   }
   
-  .map-placeholder {
+  /* Adding rounded corners for input boxes */
+  .input, .inputWithIcon {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--input-bg-color);
+    border-radius: 12px; /* This adds rounded corners */
+    border: 2px solid #e2e8f0;
+    margin-top: 0.5rem;
+  }
+  
+  .input:focus, .inputWithIcon:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+  
+  .checkboxGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .checkboxWrapper {
     display: flex;
-    justify-content: center;
     align-items: center;
+  }
+  
+  .checkboxLabel {
+    margin-left: 0.5rem;
+  }
+  
+  .inputContainer {
+    position: relative;
+  }
+  
+  .inputWithIcon {
+    padding-right: 2.5rem;
+  }
+  
+  .mapPinIcon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+  }
+  
+  .mapPlaceholder {
+    margin-top: 1rem;
     background-color: var(--input-bg-color);
     height: 12rem;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #a0aec0;
-    font-weight: 500;
-    margin-top: 0.75rem;
   }
   
-  .map-placeholder:hover {
-    background-color: #e2e8f0;
+  .submitButton {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    background-color: var(--button-bg-color);
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: var(--button-hover-bg-color);
   }
