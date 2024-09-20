@@ -79,3 +79,38 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--input-bg-color);
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  margin-top: 0.5rem;
+}
+
+input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  background-color: var(--button-bg-color);
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color);
+}

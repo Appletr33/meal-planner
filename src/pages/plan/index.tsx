@@ -47,15 +47,15 @@ export default function Plan() {
   }
 
   return (
-    <div className={`${styles.container} min-h-screen flex items-center justify-center p-4`}>
-      <Card className={`${styles.card} w-full max-w-2xl`}>
+    <div className={`${styles.container}`}>
+      <Card className={`${styles.card}`}>
         <CardHeader className={styles.cardHeader}>
           <CardTitle className={styles.cardTitle}>Plan Your Meal</CardTitle>
         </CardHeader>
         <CardContent className={styles.cardContent}>
           <form onSubmit={handleFormSubmit} className="space-y-6">
             <div>
-              <Label htmlFor="numberOfMeals" className="text-lg font-medium text-orange-800">
+              <Label htmlFor="numberOfMeals" className={styles.label}>
                 Number of Meals
               </Label>
               <Input
@@ -63,17 +63,17 @@ export default function Plan() {
                 name="numberOfMeals"
                 type="number"
                 required
-                className="mt-1"
+                className={styles.input}
                 value={formData.numberOfMeals}
                 onChange={handleInputChange}
               />
             </div>
 
             <div>
-              <Label className="text-lg font-medium text-orange-800">Dietary Requirements</Label>
-              <div className="grid grid-cols-2 gap-4 mt-2">
+              <Label className={styles.label}>Dietary Requirements</Label>
+              <div className={styles.checkboxGrid}>
                 {['Vegetarian', 'Vegan', 'Gluten-Free', 'Dairy-Free'].map((requirement) => (
-                  <div key={requirement} className="flex items-center space-x-2">
+                  <div key={requirement} className={styles.checkboxWrapper}>
                     <Checkbox
                       id={requirement}
                       checked={formData.dietaryRequirements.includes(requirement)}
@@ -81,7 +81,7 @@ export default function Plan() {
                     />
                     <label
                       htmlFor={requirement}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className={styles.checkboxLabel}
                     >
                       {requirement}
                     </label>
@@ -91,27 +91,27 @@ export default function Plan() {
             </div>
 
             <div>
-              <Label htmlFor="zipCode" className="text-lg font-medium text-orange-800">
+              <Label htmlFor="zipCode" className={styles.label}>
                 Location
               </Label>
-              <div className="mt-1 relative">
+              <div className={styles.inputContainer}>
                 <Input
                   id="zipCode"
                   name="zipCode"
                   type="text"
                   required
-                  className="pr-10"
+                  className={styles.inputWithIcon}
                   value={formData.zipCode}
                   onChange={handleInputChange}
                 />
-                <MapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <MapPin className={styles.mapPinIcon} />
               </div>
-              <div className="mt-2 h-48 bg-gray-200 rounded-md flex items-center justify-center">
+              <div className={styles.mapPlaceholder}>
                 <span className="text-gray-500">Map placeholder - Click to select location</span>
               </div>
             </div>
 
-            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">
+            <Button type="submit" className={styles.submitButton}>
               Generate Meal Plan
             </Button>
           </form>
