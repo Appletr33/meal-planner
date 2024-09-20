@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
-import { MapPin } from 'lucide-react'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { MapPin } from 'lucide-react';
 
 export default function Plan() {
-  const router = useRouter()
+  const router = useRouter();
   const [formData, setFormData] = useState<{
     numberOfMeals: string;
     dietaryRequirements: string[];
@@ -22,8 +22,8 @@ export default function Plan() {
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleCheckboxChange = (requirement: string) => {
     setFormData(prev => ({
@@ -31,19 +31,32 @@ export default function Plan() {
       dietaryRequirements: prev.dietaryRequirements.includes(requirement)
         ? prev.dietaryRequirements.filter(r => r !== requirement)
         : [...prev.dietaryRequirements, requirement]
-    }))
-  }
+    }));
+  };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const response = await fetch('/api/mealPlan', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-    const data = await response.json()
-    router.push(`/plan/${data.planId}`)
-  }
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/mealPlan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.message || 'Failed to generate meal plan.');
+        return;
+      }
+
+      const data = await response.json();
+      console.log('Generated meal plan:', data); // Verify the response
+      router.push(`/plan/${data.planId}`);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred while generating your meal plan.');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-100 via-yellow-200 to-green-100 flex items-center justify-center p-4">
