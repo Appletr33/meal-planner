@@ -15,6 +15,11 @@ interface RecipeCardProps {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
+
+  if (!recipe) {
+    return <div>Loading...</div>; // or handle missing data appropriately
+  }
+
   // Ensure the recipe.link starts with http:// or https://
   const recipeLink = recipe.link.startsWith('http://') || recipe.link.startsWith('https://')
     ? recipe.link

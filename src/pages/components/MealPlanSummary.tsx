@@ -25,6 +25,11 @@ interface MealPlanSummaryProps {
 }
 
 const MealPlanSummary: React.FC<MealPlanSummaryProps> = ({ mealPlan }) => {
+
+  if (!mealPlan) {
+    return <div>Loading...</div>; // or handle missing data appropriately
+  }
+
   return (
     <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-xl">
       <h2 className="text-3xl font-bold mb-6 text-center">Your Meal Plan</h2>

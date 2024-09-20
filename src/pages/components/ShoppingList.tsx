@@ -8,6 +8,11 @@ interface ShoppingListProps {
   }
   
   const ShoppingList: React.FC<ShoppingListProps> = ({ items }) => {
+
+    if (!items) {
+      return <div>Loading...</div>; // or handle missing data appropriately
+    }
+
     return (
       <div>
         <h2>Your Shopping List</h2>

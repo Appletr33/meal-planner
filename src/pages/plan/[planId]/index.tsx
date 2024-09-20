@@ -56,7 +56,7 @@ export default function PlanSummaryPage() {
           setMealPlan({ ...data, recipes: cleanedRecipes });
           setLoading(false);
         })
-        .catch((error: any) => { // Added type for error
+        .catch((error: Error) => { // Added type for error
           console.error(error);
           setError(error.message);
           setLoading(false);

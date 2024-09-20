@@ -1,7 +1,13 @@
 import { useState } from 'react';
 
+interface MealPlanFormData {
+  goals: string;
+  dietaryRequirements: string;
+  location: string;
+}
+
 interface MealPlanFormProps {
-  onSubmit: (formData: any) => void;
+  onSubmit: (formData: MealPlanFormData) => void;
 }
 
 const MealPlanForm: React.FC<MealPlanFormProps> = ({ onSubmit }) => {

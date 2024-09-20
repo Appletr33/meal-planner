@@ -62,7 +62,7 @@ export default function Plan() {
     <div className="min-h-screen bg-gradient-to-br from-orange-100 via-yellow-200 to-green-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="bg-primary text-primary-foreground p-6 rounded-t-lg">
-          <CardTitle className="text-2xl font-bold text-center">Plan Your Meal</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Generate Your Meal Plan</CardTitle>
         </CardHeader>
         <CardContent className="p-6">
           <form onSubmit={handleFormSubmit} className="space-y-6">
